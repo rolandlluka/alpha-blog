@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_many :articles
+  has_many :articles, dependent: :destroy #delete also related articles with the user
   before_save { self.email = email.downcase } #thiss saves email to downcase even if it is entered in uppercase letter
   validates :username, presence: true,
             uniqueness: {case_sensitive: false},
